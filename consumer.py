@@ -129,10 +129,7 @@ def get_ids(result, doc):
 def get_properties(result):
     result_type = (result.xpath('//dc:type/node()', namespaces=NAMESPACES) or [''])[0]
     rights = (result.xpath('//dc:rights/node()', namespaces=NAMESPACES) or [''])
-    if len(rights) > 1:
-        copyrightt = ' '.join(rights)
-    else:
-        copyrightt = rights
+    rights = ' '.join(rights)
     publisher = (result.xpath('//dc:publisher/node()', namespaces=NAMESPACES) or [''])[0]
     relation = (result.xpath('//dc:relation/node()', namespaces=NAMESPACES) or [''])[0]
     language = (result.xpath('//dc:language/node()', namespaces=NAMESPACES) or [''])[0]
@@ -144,7 +141,7 @@ def get_properties(result):
             'publisher': copy_to_unicode(publisher),
         },
         'permissions': {
-            'copyrightStatement': copy_to_unicode(copyrightt),
+            'copyrightStatement': copy_to_unicode(rights),
         },
     }
 
